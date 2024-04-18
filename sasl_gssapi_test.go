@@ -5,7 +5,7 @@ import (
 )
 
 func TestGSSAPIMechanism(t *testing.T) {
-	mechanism, err := NewGSSAPIMechanism("hive")
+	mechanism, err := NewGSSAPIMechanism("hive", "_HOST")
 
 	if err != nil {
 		t.Fatal(err)
