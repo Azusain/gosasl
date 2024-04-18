@@ -14,7 +14,8 @@ import (
 // GSSAPIMechanism corresponds to GSSAPI SASL mechanism
 type GSSAPIMechanism struct {
 	config           *MechanismConfig
-	host             string
+	ipaddr           string
+	hostname         string
 	user             string
 	service          string
 	negotiationStage int
@@ -27,10 +28,11 @@ type GSSAPIMechanism struct {
 }
 
 // NewGSSAPIMechanism returns a new GSSAPIMechanism
-func NewGSSAPIMechanism(service string) (mechanism *GSSAPIMechanism, err error) {
+func NewGSSAPIMechanism(service string, hostname string) (mechanism *GSSAPIMechanism, err error) {
 	context := newGSSAPIContext()
 	mechanism = &GSSAPIMechanism{
 		config:           newDefaultConfig("GSSAPI"),
+		hostname:         hostname,
 		service:          service,
 		negotiationStage: 0,
 		context:          context,
@@ -54,7 +56,7 @@ func (m *GSSAPIMechanism) step(challenge []byte) ([]byte, error) {
 	if len(serviceHostQualified) > 0 {
 		fullServiceName = m.service + "/" + serviceHostQualified
 	} else {
-		fullServiceName = m.service + "/" + m.host
+		fullServiceName = m.service + "/" + m.hostname
 	}
 
 	if m.negotiationStage == 0 {

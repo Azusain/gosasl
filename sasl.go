@@ -29,7 +29,7 @@ var AUTH_INT = "auth-int"
 // the most secure option.
 var AUTH_CONF = "auth-conf"
 
-//QOP_TO_FLAG is a dict that translate the string flag name into the actual bit
+// QOP_TO_FLAG is a dict that translate the string flag name into the actual bit
 // It can be used wiht gssapiMechanism.UserSelectQop = QOP_TO_FLAG[AUTH_CONF] | QOP_TO_FLAG[AUTH_INT]
 var QOP_TO_FLAG = map[string]byte{
 	AUTH:      1,
@@ -381,7 +381,7 @@ func newDefaultConfig(name string) *MechanismConfig {
 func NewSaslClient(host string, mechanism Mechanism) *Client {
 	mech, ok := mechanism.(*GSSAPIMechanism)
 	if ok {
-		mech.host = host
+		mech.ipaddr = host
 	}
 	mechDigest, ok := mechanism.(*DigestMD5Mechanism)
 	if ok {
