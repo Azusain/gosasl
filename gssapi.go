@@ -1,5 +1,3 @@
-// +build kerberos
-
 package gosasl
 
 import (
@@ -206,7 +204,6 @@ type GSSAPIContext struct {
 	availFlags     uint32
 }
 
-//
 func newGSSAPIContext() *GSSAPIContext {
 	var c = &GSSAPIContext{
 		reqFlags: uint32(gssapi.GSS_C_INTEG_FLAG) + uint32(gssapi.GSS_C_MUTUAL_FLAG) + uint32(gssapi.GSS_C_SEQUENCE_FLAG) + uint32(gssapi.GSS_C_CONF_FLAG),

@@ -1,5 +1,3 @@
-// +build kerberos
-
 package gosasl
 
 import (
