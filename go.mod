@@ -1,4 +1,4 @@
-module github.com/bytebase/gosasl
+module github.com/beltran/gosasl
 
 go 1.14
 
